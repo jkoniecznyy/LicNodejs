@@ -28,58 +28,31 @@ const createUser = async (req, res) => {
 
 
 const login = async (req, res) => {
-    console.log('Loging user: ', req.body.username)
-    User.findOne({
-        username: req.body.username
-    })
-        .exec((err, user) => {
-            if (err) {
-                res.status(500).send({message: err});
-                return;
-            }
+    console.log('Logging user: ', req.body.username)
 
-            if (!user) {
-                return res.status(404).send({message: "User Not found."});
-            }
+    const token = jwt.sign({id: req.userId}, config.secret, {
+        expiresIn: 86400 // 24 hours
+    });
+    console.log('User logged')
 
-            const passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                user.password
-            );
+    res.cookie("jwt", token, {
+        httpOnly: true,
+    });
 
-            if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: "Invalid Password!"
-                });
-            }
+    res.status(200).send({
+        username: req.body.username,
+        status: 'Logged in'
+    });
 
-            const token = jwt.sign({id: user.id}, config.secret, {
-                expiresIn: 86400 // 24 hours
-            });
-            console.log('Token: ', token)
-
-            res.cookie("jwt", token, {
-                httpOnly: true,
-            });
-
-            res.status(200).send({
-                // id: user._id,
-                username: user.username,
-                // accessToken: token,
-                status: 'Logged in'
-            });
-
-
-        });
 };
 
 // const logout = async (req, res) => {
 //     console.log('Loging out')
 // };
+
 const changePassword = async (req, res) => {
     console.log('Changing password')
-    let { password} = req.body
+    let {password} = req.body
     try {
         const _id = req.userId
         password = await bcrypt.hash(password, 10)

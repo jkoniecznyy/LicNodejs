@@ -9,7 +9,7 @@ module.exports = function (app) {
         authController.createUser);
 
     app.post("/api/auth/login",
-        [verifySignUp.validateForm],
+        [verifySignUp.validateForm, verifySignUp.validatePassword],
         authController.login);
 
     app.post("/api/auth/change",
