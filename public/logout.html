@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> Login </title>
+    </head>
+    <body>
+        <h1> Logout </h1>
+        <form id="logout-form">
+            <input type="submit" value="Submit Form" />
+        </form>
+
+        <script>
+            const form = document.getElementById('logout-form')
+            form.addEventListener('submit',logoutUser)
+            async function logoutUser(event){
+                event.preventDefault()
+                document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                console.log('Logout')
+            }
+        </script>
+    </body>
+</html>

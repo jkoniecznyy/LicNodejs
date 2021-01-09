@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> ChangePass </title>
+    </head>
+    <body>
+        <h1> ChangePass </h1>
+        <form id="changePass-form">
+            <input type="text" autocomplete="off" id="username" placeholder="Username" />
+            <input type="password" autocomplete="off" id="password" placeholder="Password" />
+            <input type="submit" value="Submit Form" />
+        </form>
+
+        <script>
+            const form = document.getElementById('changePass-form')
+            form.addEventListener('submit',changePass)
+            async function changePass(event){
+                event.preventDefault()
+                const password = document.getElementById('password').value
+
+                const result = await fetch('/api/auth/change', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        password: password,
+                        token: localStorage.getItem('token')
+                    })
+                }).then((res) => res.json())
+
+                console.log(result)
+                if (result.status === 'Password changed') {
+                    console.log('Success')
+                } else {
+                    alert(result.error)
+                }
+            }
+        </script>
+    </body>
+</html>
