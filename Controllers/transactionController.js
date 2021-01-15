@@ -16,7 +16,7 @@ const getYourTransactions = async (req, res) => {
     console.log('getYourTransactions ')
     try {
         const transactions = await Transaction.find({
-            userId: req.userId  })
+            userId: res.locals.userId  })
 
 
         res.status(200).send(transactions);
@@ -27,14 +27,13 @@ const getYourTransactions = async (req, res) => {
 }
 
 const newTransaction = async (req, res) => {
-    console.log('newTransaction ')
-    const { value } = req.body
-    const userId = req.userId
-    console.log('Creating transaction: ', value)
-    console.log('Creating transaction: ', userId)
+    const userId = res.locals.userId
+    const { propertyId, description, value } = req.body
     try {
         const response = await Transaction.create({
             userId,
+            propertyId,
+            description,
             value
         })
 
@@ -43,7 +42,6 @@ const newTransaction = async (req, res) => {
         res.status(200).send("Transaction created successfully!")
     } catch (error) {
         console.log(error.message)
-        console.log(JSON.stringify(error))
         return res.status(403).send({ message: "Couldn't create a transaction!" });
     }
 }

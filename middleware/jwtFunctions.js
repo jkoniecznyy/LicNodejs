@@ -11,14 +11,18 @@ verifyToken = (req, res, next) => {
         if (err) {
             return res.status(401).send({ message: "Unauthorized!" });
         }
-        req.userId = decoded.id;
+        res.locals.userId = decoded.id;
         console.log("Token verified")
+        //TODO FINDING A USER
 
+        console.log(accessToken)
+        console.log(config.secret)
+        console.log('Decoded: ', res.locals.userId)
         next();
     });
 };
 
-const authJwt = {
+const jwtFunctions = {
     verifyToken
 };
-module.exports = authJwt;
+module.exports = jwtFunctions;

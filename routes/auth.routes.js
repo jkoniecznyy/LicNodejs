@@ -1,18 +1,22 @@
-const {verifySignUp} = require("../middleware");
+const {jwtFunctions} = require("../middleware");
+const {validateFunctions} = require("../middleware");
+const databaseFunctions = require("../middleware/databaseFunctions");
 const authController = require("../controllers/authController");
-const {authJwt} = require("../middleware");
 
 module.exports = function (app) {
 
     app.post("/api/auth/register",
-        [verifySignUp.validateForm, verifySignUp.checkDuplicateUsername],
+        [jwtFunctions.validateForm, databaseFunctions.checkDuplicatedUsername],
         authController.createUser);
 
     app.post("/api/auth/login",
-        [verifySignUp.validateForm, verifySignUp.validatePassword],
+        [jwtFunctions.validateForm, databaseFunctions.findUserByUsername, jwtFunctions.validatePassword],
         authController.login);
 
+    app.get("/api/auth/logout",
+        authController.logout);
+
     app.post("/api/auth/change",
-        [authJwt.verifyToken],
+        [validateFunctions.verifyToken],
         authController.changePassword);
 };

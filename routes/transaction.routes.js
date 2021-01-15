@@ -1,11 +1,11 @@
-const {authJwt} = require("../middleware");
+const {validateFunctions} = require("../middleware");
 const transactionController = require("../controllers/transactionController");
 
 module.exports = function (app) {
-    app.get("/api/transaction/all", [authJwt.verifyToken], transactionController.getAllTransactions);
-    app.get("/api/transaction/your", [authJwt.verifyToken], transactionController.getYourTransactions);
+    app.get("/api/transaction/all", transactionController.getAllTransactions);
+    app.get("/api/transaction/your", [validateFunctions.verifyToken], transactionController.getYourTransactions);
 
-    app.post("/api/transaction/new", [authJwt.verifyToken], transactionController.newTransaction);
+    app.post("/api/transaction/new", [validateFunctions.verifyToken], transactionController.newTransaction);
 
 
 };

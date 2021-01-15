@@ -12,12 +12,15 @@
         </form>
 
         <script>
-            const form = document.getElementById('logout-form')
-            form.addEventListener('submit',logoutUser)
-            async function logoutUser(event){
-                event.preventDefault()
-                document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-                console.log('Logout')
+            const result = await fetch('/api/auth/logout', {
+                method: 'GET'
+            }).then((res) => res.json())
+
+            if (result.status === 'Logged out') {
+                console.log('Logout successful')
+            } else {
+                console.log(result.error)
+                alert('Logout unsuccessful')
             }
         </script>
     </body>

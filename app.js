@@ -14,7 +14,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(cookieParser(config.secret))
 
 
-mongoose.connect('mongodb://localhost:27017/users', {
+mongoose.connect('mongodb://localhost:27017/licencjat', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -31,6 +31,7 @@ mongoose.connect('mongodb://localhost:27017/users', {
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/transaction.routes')(app);
+require('./routes/property.routes')(app);
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://localhost:${port}/`);
