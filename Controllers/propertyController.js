@@ -2,8 +2,7 @@ const Property = require('../model/property')
 
 exports.addProperty = async (req, res) => {
     console.log("Adding property")
-    const userId = res.locals.userId
-    const {description, type} = req.body
+    const {userId, description, type} = req.body
     try {
         const response = await Property.create({
             userId,
@@ -11,8 +10,8 @@ exports.addProperty = async (req, res) => {
             type
         })
 
-        console.log('Transaction created successfully!', response)
-        return res.status(200).send({
+        console.log('Property created successfully!', response)
+        return res.status(200).send({   //TODO jak to jest z returnami
             status: 'Property added'
         });
     } catch (error) {

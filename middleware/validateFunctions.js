@@ -1,4 +1,3 @@
-const User = require('../model/user')
 const bcrypt = require('bcryptjs')
 
 validateForm = async (req, res, next) => {
@@ -15,26 +14,19 @@ validateForm = async (req, res, next) => {
 }
 validatePassword = async (req, res, next) => {
     try {
-        if (res.locals.user) {
-            const passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                res.locals.user.password
-            )
+        if (!res.locals.user) return res.status(401).send({message: "Couldn't find a user!"})
+        const passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            res.locals.user.password
+        )
+        if (!passwordIsValid) return res.status(401).send({message: "Invalid Password!"})
+        next()
 
-            if (!passwordIsValid) {
-                return res.status(401).send({message: "Invalid Password!"})
-            } else {
-                next()
-                return
-            }
-        } else {
-            return res.status(401).send({message: "Couldn't find a user!"})
-        }
-    }catch (err){
+    } catch (err) {
         console.log(err)
         return res.status(401).send({message: "Couldn't find a user!"})
     }
-
+    //TODO tu coś mi nie gra
 }
 
 

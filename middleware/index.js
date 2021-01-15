@@ -5,3 +5,4 @@ module.exports = {
     validateFunctions: jwtFunctions,
     jwtFunctions: validateFunctions
 };
+//TODO czy to jest wgl potrzebne?

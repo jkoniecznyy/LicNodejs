@@ -2,7 +2,7 @@ const {jwtFunctions} = require("../middleware");
 const {validateFunctions} = require("../middleware");
 const databaseFunctions = require("../middleware/databaseFunctions");
 const authController = require("../controllers/authController");
-
+//TODO którym sposobem eksportować: validateFunctions, databaseFunctions, authController
 module.exports = function (app) {
 
     app.post("/api/auth/register",

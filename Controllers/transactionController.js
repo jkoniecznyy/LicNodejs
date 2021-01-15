@@ -7,8 +7,7 @@ const getAllTransactions = async (req, res) => {
 
         res.status(200).send(transactions);
     } catch (err) {
-        console.log("Couldn't get all transactions!", err)
-        return res.status(403).send({message: "Couldn't get all transactions!"});
+        res.status(403).send({message: "Couldn't get all transactions!"});
     }
 }
 
@@ -18,18 +17,15 @@ const getYourTransactions = async (req, res) => {
         const transactions = await Transaction.find({
             userId: res.locals.userId  })
 
-
         res.status(200).send(transactions);
     } catch (err) {
-        console.log("Couldn't get all transactions!", err)
-        return res.status(403).send({message: "Couldn't get all transactions!"});
+        res.status(403).send({message: "Couldn't get all transactions!"});
     }
 }
 
 const newTransaction = async (req, res) => {
-    const userId = res.locals.userId
-    const { propertyId, description, value } = req.body
     try {
+        const {userId, propertyId, description, value } = req.body
         const response = await Transaction.create({
             userId,
             propertyId,
@@ -45,8 +41,6 @@ const newTransaction = async (req, res) => {
         return res.status(403).send({ message: "Couldn't create a transaction!" });
     }
 }
-
-
 
 module.exports = {
     getAllTransactions,
