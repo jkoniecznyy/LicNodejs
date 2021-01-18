@@ -1,22 +1,22 @@
-const {jwtFunctions} = require("../middleware");
-const {validateFunctions} = require("../middleware");
-const databaseFunctions = require("../middleware/databaseFunctions");
-const authController = require("../controllers/authController");
-//TODO którym sposobem eksportować: validateFunctions, databaseFunctions, authController
+const jwtMiddleware = require("../middleware/jwt.middleware");
+const validationMiddleware = require("../middleware/validation.middleware");
+const userService = require("../services/user.service");
+const authController = require("../controllers/user.controller");
+
 module.exports = function (app) {
 
     app.post("/api/auth/register",
-        [jwtFunctions.validateForm, databaseFunctions.checkDuplicatedUsername],
+        [validationMiddleware.validateForm, userService.checkDuplicatedUsername],
         authController.createUser);
 
     app.post("/api/auth/login",
-        [jwtFunctions.validateForm, databaseFunctions.findUserByUsername, jwtFunctions.validatePassword],
+        [validationMiddleware.validateForm, userService.findUserByUsername, jwtMiddleware.validatePassword],
         authController.login);
 
     app.get("/api/auth/logout",
         authController.logout);
 
     app.post("/api/auth/change",
-        [validateFunctions.verifyToken],
+        [jwtMiddleware.verifyToken],
         authController.changePassword);
 };

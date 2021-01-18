@@ -1,4 +1,4 @@
-const User = require('../model/user')
+const User = require('../model/user.model')
 
 exports.findUserById = async (req, res, next) => {
     console.log('findUserById')
@@ -7,7 +7,7 @@ exports.findUserById = async (req, res, next) => {
             _id: res.locals.userId
         }).exec((err, user) => {
             if (err) return res.status(500).send({message: err});
-            if (!user) return res.status(404).send({message: "User Not found."});
+            if (!user) return res.status(401).send({message: "User Not found."});
 
             res.locals.user = user
             next()
@@ -42,7 +42,7 @@ exports.checkDuplicatedUsername = async (req, res, next) => {
     }).exec((err, user) => {
 
         if (err) return res.status(500).send({message: err});
-        if (user) return res.status(400).send({message: "Failed! Username is already in use!"});
+        if (user) return res.status(401).send({message: "Failed! Username is already in use!"});
 
         next();
     });

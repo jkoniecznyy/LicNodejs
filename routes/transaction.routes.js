@@ -1,12 +1,16 @@
-const {validateFunctions} = require("../middleware");
-const transactionController = require("../controllers/transactionController");
+const jwtMiddleware = require("../middleware/jwt.middleware");
+const validationMiddleware = require('../middleware/validation.middleware')
+const userService = require('../services/user.service')
+const transactionController = require("../controllers/transaction.controller");
 
 module.exports = function (app) {
-    app.get("/api/transaction/all", [validateFunctions.verifyToken], transactionController.getAllTransactions);
-    // TODO Nie kazdy user powinien moc widziec all
-    app.get("/api/transaction/your", [validateFunctions.verifyToken], transactionController.getYourTransactions);
+    app.get("/api/transaction/all",
+        [jwtMiddleware.verifyToken, userService.findUserById, validationMiddleware.isAdmin],
+        transactionController.getAllTransactions);
 
-    app.post("/api/transaction/new", [validateFunctions.verifyToken], transactionController.newTransaction);
+    app.get("/api/transaction/your", [jwtMiddleware.verifyToken], transactionController.getYourTransactions);
+
+    app.post("/api/transaction/new", [jwtMiddleware.verifyToken], transactionController.newTransaction);
 
 
 };

@@ -1,4 +1,4 @@
-const Property = require('../model/property')
+const Property = require('../model/property.model')
 
 exports.addProperty = async (req, res) => {
     console.log("Adding property")
@@ -11,11 +11,11 @@ exports.addProperty = async (req, res) => {
         })
 
         console.log('Property created successfully!', response)
-        return res.status(200).send({   //TODO jak to jest z returnami
-            status: 'Property added'
+        return res.status(201).send({
+            message: 'Property added'
         });
     } catch (error) {
         console.log(error)
-        return res.status(404).send({message: "Cannot add a property."})
+        return res.status(500).send({message: "Cannot add a property."})
     }
 }
