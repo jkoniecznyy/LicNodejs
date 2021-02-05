@@ -26,7 +26,7 @@ exports.findUserByUsername = async (req, res, next) => {
         }).exec((err, user) => {
 
             if (err) return res.status(500).send({message: err});
-            if (!user) return res.status(404).send({message: "User Not found."});
+            if (!user) return res.status(404).send({message: "Authentication failed.."});
 
             res.locals.user = user
             next()

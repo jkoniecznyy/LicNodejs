@@ -9,8 +9,8 @@ module.exports = function (app) {
         [validationMiddleware.validateForm, userService.checkDuplicatedUsername],
         authController.createUser);
 
-    app.post("/api/auth/login",
-        [validationMiddleware.validateForm, userService.findUserByUsername, jwtMiddleware.validatePassword],
+    app.post("/api/auth/login",     //TODO findUserByUsername wywoływać w user.controller
+        [validationMiddleware.validateForm, userService.findUserByUsername],
         authController.login);
 
     app.get("/api/auth/logout",

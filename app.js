@@ -6,7 +6,7 @@ const app = express()
 const hostname = '127.0.0.1';
 const port = 3000;
 const config = require("./config/auth.config.js");
-
+const errorHandler = require('./middleware/errorHandler.middleware')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -31,6 +31,7 @@ require('./routes/auth.routes')(app);
 require('./routes/test.routes')(app);
 require('./routes/transaction.routes')(app);
 require('./routes/property.routes')(app);
+app.use(errorHandler.handleError)
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://localhost:${port}/`);

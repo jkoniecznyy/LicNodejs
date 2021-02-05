@@ -12,4 +12,5 @@ module.exports = function (app) {
         [jwtMiddleware.verifyToken,  userService.findUserById, validationMiddleware.isAdmin],
         testController.adminAccess);
 
+    app.get("/api/test/error", testController.throwErr);
 };

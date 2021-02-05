@@ -1,14 +1,14 @@
-const Transaction = require('../model/transaction.model');
 const transactionService = require('../services/transtaction.service')
 
-exports.getAllTransactions = async (req, res) => {
-    console.log('getAllTransactions ')
+exports.newTransaction = async (req, res) => {
     try {
-        const transactions = await transactionService.getAllTransactions()
+        const {userId, propertyId, description, value} = req.body
+        const response = await transactionService.createTransaction(userId, propertyId, description, value)
 
-        res.status(200).send(transactions);
+        if (response) return res.status(201).send({message: "Transaction created successfully!"})
+        else return res.status(401).send({message: "Couldn't create your transaction!"})
     } catch (err) {
-        res.status(500).send({message: "Couldn't get all transactions!"});
+        res.status(500).send({message: "Couldn't create your transaction!"});
     }
 }
 
@@ -23,21 +23,13 @@ exports.getYourTransactions = async (req, res) => {
     }
 }
 
-exports.newTransaction = async (req, res) => {
+exports.getAllTransactions = async (req, res) => {
+    console.log('getAllTransactions ')
     try {
-        const {userId, propertyId, description, value } = req.body
-        const response = await Transaction.create({
-            userId,
-            propertyId,
-            description,
-            value
-        })
+        const transactions = await transactionService.getAllTransactions()
 
-        console.log('Transaction created successfully!', response)
-
-        res.status(201).send({message: "Transaction created successfully!"})
-    } catch (error) {
-        console.log(error.message)
-        return res.status(500).send({ message: "Couldn't create a transaction!" });
+        res.status(200).send(transactions);
+    } catch (err) {
+        res.status(500).send({message: "Couldn't get all transactions!"});
     }
 }

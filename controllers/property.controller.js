@@ -1,21 +1,37 @@
-const Property = require('../model/property.model')
+const propertyService = require("../services/property.service");
 
 exports.addProperty = async (req, res) => {
-    console.log("Adding property")
-    const {userId, description, type} = req.body
     try {
-        const response = await Property.create({
-            userId,
-            description,
-            type
-        })
+        console.log("Adding property")
+        const {userId, description, type} = req.body
 
-        console.log('Property created successfully!', response)
-        return res.status(201).send({
-            message: 'Property added'
-        });
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send({message: "Cannot add a property."})
+        const response = await propertyService.createProperty(userId, description, type)
+
+        if (response) return res.status(201).send({message: "Property created successfully!"})
+        else return res.status(401).send({message: "Couldn't create your Property!"})
+    } catch (err) {
+        res.status(500).send({message: "Couldn't create your transaction!"});
+    }
+}
+
+exports.getYourProperties = async (req, res) => {
+    console.log('getYourProperties ')
+    try {
+        const properties = await propertyService.getUserProperties(res.locals.userId)
+
+        res.status(200).send(properties);
+    } catch (err) {
+        res.status(500).send({message: "Couldn't get your transactions!"});
+    }
+}
+
+exports.getAllProperties = async (req, res) => {
+    console.log('getAllProperties ')
+    try {
+        const properties = await propertyService.getAllProperties()
+
+        res.status(200).send(properties);
+    } catch (err) {
+        res.status(500).send({message: "Couldn't get all transactions!"});
     }
 }

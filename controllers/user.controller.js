@@ -14,6 +14,7 @@ exports.createUser = async (req, res) => {
         })
 
         res.status(201).send({message: 'User created successfully!', username});
+		// res.sendStatus(401)
     } catch (error) {
         res.status(500).send({message: "Cannot create a user."})
     }
@@ -21,8 +22,11 @@ exports.createUser = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        const isPasswordValid = await validatePassword(req.body.password, res.locals.user)
+        if (isPasswordValid === false) return res.status(401).send({message: "Authentication failed."})
+
         const token = jwt.sign({id: res.locals.user._id}, config.secret, {
-            expiresIn: 86400 // 24 hours    //TODO tego chyba nie ma sensu wyrzucac z tej fkcji?
+            expiresIn: 86400 // 24 hours
         });
         console.log('User logged')
 
@@ -38,6 +42,18 @@ exports.login = async (req, res) => {
         return res.status(500).send({message: "Login failed."})
     }
 };
+
+const validatePassword = async (password, user) => {
+    if (!user) return false
+    const passwordIsValid = bcrypt.compareSync(
+        password,
+        user.password
+    )
+    console.log(passwordIsValid)
+    return passwordIsValid;
+
+}
+
 
 exports.logout = async (req, res) => {
     console.log('Logging out')

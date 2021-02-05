@@ -7,3 +7,6 @@ exports.userAccess = (req, res) => {
 exports.adminAccess = (req, res) => {
     res.status(200).send("Admin Content.");
 };
+exports.throwErr = (req, res) => {
+    throw 'Catch me if you can'
+}
