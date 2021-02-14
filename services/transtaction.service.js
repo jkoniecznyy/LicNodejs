@@ -1,4 +1,4 @@
-const Transaction = require('../model/transaction.model');
+const Transaction = require('../models/transaction.model');
 
 exports.getAllTransactions = async () => {
     return Transaction.find({})

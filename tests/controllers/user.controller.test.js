@@ -1,5 +1,5 @@
 userController = require('../../controllers/user.controller')
-const User = require('../../model/user.model')
+const User = require('../../models/user.model')
 const {req, res} = require("express");
 
 describe('user controller tests', function () {

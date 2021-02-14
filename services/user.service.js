@@ -1,4 +1,4 @@
-const User = require('../model/user.model')
+const User = require('../models/user.model')
 
 exports.findUserById = async (req, res, next) => {
     console.log('findUserById')

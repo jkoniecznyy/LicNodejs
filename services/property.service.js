@@ -1,4 +1,4 @@
-const Property = require('../model/property.model')
+const Property = require('../models/property.model')
 
 exports.getAllProperties = async () => {
     return Property.find({})
