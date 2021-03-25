@@ -3,17 +3,15 @@ const express = require('express');
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const app = express()
-const hostname = '127.0.0.1';
-const port = 3000;
 const config = require("./config/auth.config.js");
 const errorHandler = require('./middleware/errorHandler.middleware')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'client/public')));
 app.use(cookieParser(config.secret))
 
-mongoose.connect('mongodb://localhost:27017/licencjat', {
+mongoose.connect(config.databaseUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -22,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/licencjat', {
         console.log("Successfully connected to MongoDB.");
     })
     .catch(err => {
-        console.error("Connection error", err);
+        console.error("Connection error", err.message);
         process.exit();
     });
 
@@ -33,6 +31,6 @@ require('./routes/transaction.routes')(app);
 require('./routes/property.routes')(app);
 app.use(errorHandler.handleError)
 
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+app.listen(config.port, config.hostname, () => {
+    console.log(`Server running at http://localhost:${config.port}/`);
 });
