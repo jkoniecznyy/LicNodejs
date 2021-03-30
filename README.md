@@ -7,7 +7,7 @@
 The goal of this project is to create a web application for customer service of the housing cooperative.
 
 The project is made as my bachelor's application. For now, it's all hosted on localhost, because I'm focused on 
-learning how to code in Node and Vue. In the future the project will maybe be deployed on heroku.
+learning how to code in Node and Vue. In the future the project will probably be deployed on heroku.
 
 ## Technologies
 The project is created with:
