@@ -1,16 +1,16 @@
-const jwtMiddleware = require("../middleware/jwt.middleware");
+const tokenMiddleware = require("../middleware/token.middleware");
 const validationMiddleware = require('../middleware/validation.middleware')
 const userService = require('../services/user.service')
 const transactionController = require("../controllers/transaction.controller");
 
 module.exports = function (app) {
     app.get("/api/transaction/all",
-        [jwtMiddleware.verifyToken, userService.findUserById, validationMiddleware.isAdmin],
+        [tokenMiddleware.verifyToken, userService.findUserById, validationMiddleware.isAdmin],
         transactionController.getAllTransactions);
 
-    app.get("/api/transaction/your", [jwtMiddleware.verifyToken], transactionController.getYourTransactions);
+    app.get("/api/transaction/your", [tokenMiddleware.verifyToken], transactionController.getYourTransactions);
 
-    app.post("/api/transaction/new", [jwtMiddleware.verifyToken], transactionController.newTransaction);
+    app.post("/api/transaction/new", [tokenMiddleware.verifyToken], transactionController.newTransaction);
 
 
 };

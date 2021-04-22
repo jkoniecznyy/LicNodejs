@@ -1,11 +1,11 @@
-exports.allAccess = (req, res) => {
-    res.status(200).send("Public Content.");
+exports.publicAccess = (req, res) => {
+    res.status(200).send({message: "Public Content."});
 };
 exports.userAccess = (req, res) => {
-    res.status(200).send("User Content.");
+    res.status(200).send({message: "User Content."});
 };
 exports.adminAccess = (req, res) => {
-    res.status(200).send("Admin Content.");
+    res.status(200).send({message: "Admin Content."});
 };
 exports.throwErr = (req, res) => {
     throw 'Catch me if you can'

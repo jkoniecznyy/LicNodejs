@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
+const config = require("../config/global.config.js");
 
 exports.verifyToken = async (req, res, next) => {
     let accessToken = req.cookies.jwt
