@@ -1,24 +1,25 @@
 <template>
   <div id="app">
-    <TestComponent />
-    <TutorialComponent />
+    <Nav />
+    <UserComponent />
+    <!--    <TestComponent />-->
+<!--    <TutorialComponent />-->
   </div>
 </template>
 
 <script>
-import TestComponent from './components/test.component.vue'
-import TutorialComponent from './components/Tutorial/todoapp'
+import Nav from './components/Nav'
+import UserComponent from './components/user.component'
+// import TestComponent from './components/test.component.vue'
+// import TutorialComponent from './components/Tutorial/todoapp'
 
 export default {
   name: 'App',
   components: {
-    TestComponent,
-    TutorialComponent
+    UserComponent,
+    Nav,
+    // TestComponent,
+    // TutorialComponent
   }
 }
 </script>
-<style>
-body {
-  font-size: 22px;
-}
-</style>

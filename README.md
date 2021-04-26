@@ -27,7 +27,7 @@ $ node app
 ```
 
 ## YouTubeTutorials
-Here are some YouTube tutorials that helped me create this app along with the official docs and some programming blog posts.
+Here are some YouTube tutorials that helped me create this app along with the official docs and programming blog posts.
 * [Twórca Stron - Channel focused on creating websites (PL)](https://www.youtube.com/channel/UCaycmZ0kLzlh3fVJZlUvwxw/featured)
 * [DevEd - Channel focused on creating websites (ENG)](https://www.youtube.com/c/DevEd/featured)
 * [WebDevSimplified - Channel focused on creating websites (ENG)](https://www.youtube.com/c/WebDevSimplified/featured)

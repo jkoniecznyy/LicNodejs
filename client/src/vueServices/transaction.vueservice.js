@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const url = 'http://localhost:3000/api/transaction/'
 
-class TransactionService {
+class TransactionVueservice {
     static getPosts() {
         return new Promise(async (resolve, reject) => {
             try {
@@ -26,4 +26,4 @@ class TransactionService {
     }
 }
 
-export default TransactionService
+export default TransactionVueservice

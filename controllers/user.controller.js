@@ -57,6 +57,7 @@ const validatePassword = async (password, user) => {
 
 exports.logout = async (req, res) => {
     console.log('Logging out')
+    console.log(req.cookies)
     res.clearCookie("jwt")
     res.status(200).send({
         status: 'Logged out'
