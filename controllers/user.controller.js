@@ -14,7 +14,7 @@ exports.createUser = async (req, res) => {
         })
 
         res.status(201).send({message: 'User created successfully!', username});
-		// res.sendStatus(401)
+        // res.sendStatus(401)
     } catch (error) {
         res.status(500).send({message: "Cannot create a user."})
     }
@@ -30,13 +30,15 @@ exports.login = async (req, res) => {
         });
         console.log('User logged')
 
-        res.cookie("jwt", token, {
+        res.cookie("userToken", token, {
             httpOnly: true,
+            sameSite: 'lax',
+            secure: true
         });
 
         res.status(200).send({
             username: req.body.username,
-            status: 'Logged in'
+            secure: true
         });
     } catch (error) {
         return res.status(500).send({message: "Login failed."})
@@ -52,13 +54,12 @@ const validatePassword = async (password, user) => {
     console.log(passwordIsValid)
     return passwordIsValid;
 
-}
-
+};
 
 exports.logout = async (req, res) => {
     console.log('Logging out')
     console.log(req.cookies)
-    res.clearCookie("jwt")
+    res.clearCookie("userToken")
     res.status(200).send({
         status: 'Logged out'
     });
@@ -83,5 +84,4 @@ exports.changePassword = async (req, res) => {
         console.log(error)
         return res.status(500).send({message: "Password change failed."})
     }
-
 };

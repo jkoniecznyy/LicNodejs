@@ -4,13 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app",
+    "prod": "pm2 start app.js",
+    "stop-prod": "pm2 stop app.js",
     "test": "mocha tests/test.index.js"
   },
   "author": "J. Konieczny",
-  "license": "",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bson": "1.1.1",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
@@ -18,10 +22,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.8",
-    "bson": "1.1.1",
-    "nodemon": "^2.0.7"
+    "pm2": "^4.5.6"
   },
   "devDependencies": {
+    "nodemon": "^2.0.7",
     "chai": "^4.2.0",
     "mocha": "^8.2.1"
   }

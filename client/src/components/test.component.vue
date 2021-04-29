@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TestService from '../vueServices/test.vueservice';
+import TestService from '../vueServices/access.vueservice';
 
 export default {
   name: 'TestComponent',

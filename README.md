@@ -23,7 +23,15 @@ Then you can install it locally using npm:
 ```
 $ cd ../LicNodejs/
 $ npm install
-$ node app
+
+// Dev mode (I'm using 2 terminals
+$ node run dev
+
+$$ cd /client/
+$$ node run dev
+
+//Production
+node run prod
 ```
 
 ## YouTubeTutorials
@@ -31,5 +39,6 @@ Here are some YouTube tutorials that helped me create this app along with the of
 * [Twórca Stron - Channel focused on creating websites (PL)](https://www.youtube.com/channel/UCaycmZ0kLzlh3fVJZlUvwxw/featured)
 * [DevEd - Channel focused on creating websites (ENG)](https://www.youtube.com/c/DevEd/featured)
 * [WebDevSimplified - Channel focused on creating websites (ENG)](https://www.youtube.com/c/WebDevSimplified/featured)
+* [Academind - Channel focused on creating websites (ENG)](https://www.youtube.com/c/Academind/featured)
 * [Anson the Developer - Express tutorial (ENG)](https://www.youtube.com/watch?v=T2KjBiwYyBI&list=PL_cUvD4qzbkxZZyyuXa1xkWFhRB_NoQwl)
 * [Traversy Media - Connecting Vue with backend (ENG)](https://www.youtube.com/watch?v=j55fHUJqtyw&list=PLillGF-RfqbYSx-Ab1xWVanGKtowTsnNm&index=1)
