@@ -17,8 +17,10 @@ learning how to code in Node and Vue. In the future the project will probably be
 * Vue 2.6
 
 ## Setup
-To run this project on localhost you should have Node, Mongo and Vue already installed on your computer. 
-Then you can install it locally using npm:
+To run this project on localhost you should have Node, Mongo and Vue already installed on your computer.
+Then you can install it locally using npm.
+
+To use https you need to generate your own cert.pem and key.pem to put them in './config/certificates/'!
 
 ```
 $ cd ../LicNodejs/
