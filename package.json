@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon app",
     "prod": "pm2 start app.js",
-    "stop-prod": "pm2 stop app.js",
+    "stop-prod": "pm2 delete app.js",
     "test": "mocha tests/test.index.js"
   },
   "author": "J. Konieczny",

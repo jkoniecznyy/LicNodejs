@@ -5,11 +5,12 @@
         <router-link to="/" class="w3-bar-item w3-button"><b id="title">Strefa Klienta</b></router-link>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-          <a href="#projects" class="w3-bar-item w3-button">Nieruchomości</a>
-          <a href="#about" class="w3-bar-item w3-button">Saldo</a>
-          <a href="#contact" class="w3-bar-item w3-button">Transakcje</a>
+<!--          <a href="#about" class="w3-bar-item w3-button">Saldo</a>-->
+          <router-link v-if="isLogged" to="/transactions" class="w3-bar-item w3-button">Transakcje</router-link>
+          <router-link v-if="isLogged" to="/properties" class="w3-bar-item w3-button">Nieruchomości</router-link>
+          <button v-if="isLogged" @click="logout" class="w3-bar-item w3-button w3-black "> Wyloguj się</button>
+
           <router-link v-if="!isLogged" to="/login" class="w3-bar-item w3-button">Logowanie</router-link>
-          <button v-if="isLogged" @click="logout" class="w3-button w3-black w3-section"> Wyloguj się</button>
         </div>
       </div>
     </div>

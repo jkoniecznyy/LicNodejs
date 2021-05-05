@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Transaction from "@/views/Welcome";
+import Welcome from "@/views/Welcome";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Transaction',
-    component: Transaction
+    name: 'index',
+    component: Welcome
   },
   {
     path: '/login',
@@ -17,6 +17,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Login" */ '@/components/login.component')
+  },
+  {
+    path: '/properties',
+    name: 'Properties',
+    component: () => import(/* webpackChunkName: "Properties" */ '@/views/Properties')
+  },
+  {
+    path: '/transactions',
+    name: 'Transactions',
+    component: () => import(/* webpackChunkName: "Transactions" */ '@/views/Transactions')
   }
 ]
 
