@@ -1,8 +1,8 @@
 exports.validateForm = async (req, res, next) => {
-    let {username, password} = req.body
-    if (!username || typeof username !== 'string'
+    let {email, password} = req.body
+    if (!email || typeof email !== 'string'
         || !password || typeof password !== 'string') {
-        res.status(401).send(false);
+        res.status(401).send({message: "Wrong data provided."});
     } else {
         next()
     }
