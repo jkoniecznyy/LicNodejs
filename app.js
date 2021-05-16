@@ -44,5 +44,5 @@ const sslServer = https.createServer({
 }, app);
 
 sslServer.listen(config.port, config.hostname, () => {
-    console.log(`Server running at https://${config.hostname}:${config.port}`);
+    console.log(`Server running at &${config.serverUrl}`);
 });

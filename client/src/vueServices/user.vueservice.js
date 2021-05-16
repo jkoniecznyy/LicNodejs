@@ -6,8 +6,8 @@ export default {
     async login(email, password) {
         try {
             let res = await axios.post(`${url}login`, {
-                "username": email,
-                "password": password
+                email,
+                password
             });
             console.log(res)
             return res.status === 200;

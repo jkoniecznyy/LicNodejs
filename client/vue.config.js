@@ -13,8 +13,12 @@ module.exports = {
         public: 'https://localhost:8080/',
         proxy: {
             '/api': {
-                target: `https://${config.hostname}:${config.port}`
+                target: config.serverUrl,
+                // secure: true
             }
         }
-    }
+    },
+    // chainWebpack: (config) => {
+    //     config.resolve.symlinks(false)
+    // },
 }

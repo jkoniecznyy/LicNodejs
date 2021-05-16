@@ -14,7 +14,7 @@ exports.addProperty = async (req, res) => {
     }
 }
 
-exports.getYourProperties = async (req, res) => {
+exports.getUserProperties = async (req, res) => {
     console.log('getYourProperties ')
     try {
         const properties = await propertyService.getUserProperties(res.locals.userId)

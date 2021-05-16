@@ -22,7 +22,6 @@ exports.createUser = async (req, res) => {
  */
 exports.login = async (req, res) => {
     console.log('Logging user')
-
     const isPasswordValid = await UserService.validatePassword(req.body.password, res.locals.user)
     if (isPasswordValid === false) return res.status(401).send({message: "Authentication failed."})
 

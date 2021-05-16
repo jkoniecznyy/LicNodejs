@@ -1,13 +1,15 @@
 import axios from 'axios'
+const config = require("../../../config/global.config.js");
 
-const url = 'http://localhost:3000/api/transaction/'
+const url = `${config.serverUrl}/api/transaction/`
 
 class TransactionVueservice {
-    static getPosts() {
+    static getUserTransactions() {
         return new Promise(async (resolve, reject) => {
             try {
-                const res = await axios.get(`${url}all`);
+                const res = await axios.get(`${url}user`);
                 const data = res.data
+                console.log(data)
                 resolve(
                     data.map(transaction => ({
                         ...transaction

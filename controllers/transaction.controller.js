@@ -12,7 +12,7 @@ exports.newTransaction = async (req, res) => {
     }
 }
 
-exports.getYourTransactions = async (req, res) => {
+exports.getUserTransactions = async (req, res) => {
     console.log('getYourTransactions ')
     try {
         const transactions = await transactionService.getUserTransactions(res.locals.userId)

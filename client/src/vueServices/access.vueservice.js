@@ -11,7 +11,7 @@ export default {
                     console.log(error.response.status)
                     console.log(error.response.data.error)
                 }
-                console.log('Handling this motherf...')
+                console.log(error)
                 return false
             })
         return res.status === 200;

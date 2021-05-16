@@ -8,7 +8,7 @@ module.exports = function (app) {
         [tokenMiddleware.verifyToken, userService.findUserById, validationMiddleware.isAdmin],
         transactionController.getAllTransactions);
 
-    app.get("/api/transaction/your", [tokenMiddleware.verifyToken], transactionController.getYourTransactions);
+    app.get("/api/transaction/user", [tokenMiddleware.verifyToken], transactionController.getUserTransactions);
 
     app.post("/api/transaction/new", [tokenMiddleware.verifyToken], transactionController.newTransaction);
 
