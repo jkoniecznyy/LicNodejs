@@ -7,9 +7,9 @@ const UserService = require('../services/user.service')
  */
 exports.createUser = async (req, res) => {
     console.log('Creating user')
-    let {email, password} = req.body
+    let {email, password, isAdmin} = req.body
     const hashedPassword = await UserService.hashPassword(password)
-    const result = await UserService.addUserToDatabase(email, hashedPassword)
+    const result = await UserService.addUserToDatabase(email, hashedPassword, isAdmin)
     if (result === true) return res.status(201).send({message: 'User created successfully!'});
     return res.status(500).send({message: "Cannot create a user."})
 }

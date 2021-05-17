@@ -12,5 +12,4 @@ module.exports = function (app) {
 
     app.post("/api/transaction/new", [tokenMiddleware.verifyToken], transactionController.newTransaction);
 
-
 };

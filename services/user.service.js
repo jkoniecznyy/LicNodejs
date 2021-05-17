@@ -3,11 +3,12 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require("../config/global.config.js");
 
-exports.addUserToDatabase = async (email, password) => {
+exports.addUserToDatabase = async (email, password, isAdmin) => {
     try {
         await User.create({
             email,
-            password
+            password,
+            isAdmin
         })
         return true
     } catch (error) {

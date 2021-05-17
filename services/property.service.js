@@ -8,11 +8,12 @@ exports.getUserProperties = async (userId) => {
     return Property.find({userId});
 }
 
-exports.createProperty = async (userId, description, type) => {
+exports.createProperty = async (userId, description, type, rent) => {
     const newProperty = await Property.create({
         userId,
         description,
-        type
+        type,
+        rent
     })
     return isProperty(newProperty)
 }
