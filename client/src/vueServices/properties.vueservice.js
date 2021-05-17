@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-const url = 'http://localhost:3000/api/transaction/'
+const url = '/api/property/'
 
 export default {
     async getUserProperties(){
         try {
             const res = await axios.get(`${url}user`);
             const data = res.data
+            console.log(res)
             console.log(data)
             return data
         } catch (err) {
@@ -15,7 +16,7 @@ export default {
         }
     },
 
-    async addTransaction(text){
+    async addProperty(text){
         return axios.post(`${url}new`, {
             text
         })

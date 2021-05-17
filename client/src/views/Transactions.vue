@@ -10,7 +10,7 @@
         <h1 class="w3-border-bottom w3-border-light-grey w3-padding-16">
           Twoje transakcje:
         </h1>
-<!--        <p> {{ transactionData }} </p>-->
+        <p> {{ transactionData }} </p>
       </div>
 
     </div>
@@ -18,7 +18,7 @@
 </template>
 <script>
 import AccessService from '@/vueServices/access.vueservice';
-// import TransactionVueservice from "@/vueServices/transaction.vueservice";
+import TransactionVueservice from "@/vueServices/transaction.vueservice";
 
 export default {
   name: 'TransactionsView',
@@ -32,7 +32,7 @@ export default {
   },
   async created() {
     this.isLogged = await AccessService.TestAnyAccess('user')
-    // this.transactionData = await TransactionVueservice.getUserTransactions()
+    this.transactionData = await TransactionVueservice.getUserTransactions()
   },
   async updated() {
   }

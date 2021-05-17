@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const config = require("./config/global.config.js");
@@ -38,11 +38,11 @@ app.get(/.*/,
     (req, res) =>
         res.sendFile(path.join(__dirname, '/public/index.html')))
 
-const sslServer = https.createServer({
-    key: fs.readFileSync('./config/certificates/key.pem'),
-    cert: fs.readFileSync('./config/certificates/cert.pem')
-}, app);
+// const httpsServer = https.createServer({
+//     key: fs.readFileSync('./config/certificates/key.pem'),
+//     cert: fs.readFileSync('./config/certificates/cert.pem')
+// }, app);
 
-sslServer.listen(config.port, config.hostname, () => {
-    console.log(`Server running at ${config.serverUrl}`);
+app.listen(config.backendPort, config.hostname, () => {
+    console.log(`Server running at ${config.backendUrl}`);
 });

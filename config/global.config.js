@@ -1,7 +1,14 @@
 module.exports = {
     secret: 'kdslfjpaifknkaokwda;wokdanfafdslkfsjfnslskdf',
+    protocol: 'http://',
     hostname: 'localhost',
-    port: 3000,
-    serverUrl: 'https://localhost:3000/',
+    backendPort: 3000,
+    frontendPort: 8080,
     databaseUrl: 'mongodb://localhost:27017/licencjat',
+    get frontendUrl() {
+        return `${this.protocol}${this.hostname}:${this.frontendPort}/`
+    },
+    get backendUrl() {
+        return `${this.protocol}${this.hostname}:${this.backendPort}/`
+    }
 };

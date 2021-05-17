@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
         res.cookie("userToken", token, {
             httpOnly: true,
             sameSite: 'lax',
-            secure: true
+            // secure: true
         });
         return res.status(200).send({message: "Login successful."});
     }else {
