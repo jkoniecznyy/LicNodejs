@@ -5,9 +5,11 @@ const chai = require('chai');
 global.expect = chai.expect
 const UserService = require('../services/user.service')
 
+/**
+ * Before starting the test, create a connection with testing database
+ * Once a connection is established invoke done()
+ */
 describe('UserService Tests', async () => {
-    //Before starting the test, create a connection with testing database
-    //Once a connection is established invoke done()
     before(function (done) {
         mongoose.connect('mongodb://localhost:27017/test_licencjat', {
             useNewUrlParser: true,
@@ -36,7 +38,9 @@ describe('UserService Tests', async () => {
     })
 
 
-    //After all tests are finished drop database and close connection
+    /**
+     * After all tests are finished drop database and close connection
+     */
     after(function (done) {
         mongoose.connection.db.dropDatabase(() => {
             mongoose.connection.close(done);
