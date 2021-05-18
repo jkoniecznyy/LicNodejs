@@ -19,12 +19,12 @@ describe('UserService Tests', async () => {
         const db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error'));
         db.once('open', function () {
-            console.log('Connected to the test database!');
+            console.log('Successfully connected to the testing database');
             done();
         });
     });
 
-    it('Adds user to database', async () => {
+    it('Add User to database', async () => {
         const result = await UserService.addUserToDatabase(
             'harry@potter.com',
             'ChoChang123',
@@ -32,7 +32,7 @@ describe('UserService Tests', async () => {
         )
         expect(result, true)
     })
-    it('Finds User by email', async () => {
+    it('Find User by email', async () => {
         const result = await UserService.findUserByEmail('harry@potter.com')
         expect(result).have.property('email')
     })
