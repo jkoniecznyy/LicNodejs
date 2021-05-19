@@ -1,15 +1,15 @@
-const tokenMiddleware = require("../middleware/token.middleware");
-const validationMiddleware = require('../middleware/validation.middleware')
-const userService = require('../services/user.service')
-const transactionController = require("../controllers/transaction.controller");
+const TokenMiddleware = require("../middleware/token.middleware");
+const ValidationMiddleware = require('../middleware/validation.middleware')
+const UserService = require('../services/user.service')
+const TransactionController = require("../controllers/transaction.controller");
 
 module.exports = function (app) {
     app.get("/api/transaction/all",
-        [tokenMiddleware.verifyToken, userService.findUserById, validationMiddleware.isAdmin],
-        transactionController.getAllTransactions);
+        [TokenMiddleware.verifyToken, UserService.findUserById, ValidationMiddleware.isAdmin],
+        TransactionController.getAllTransactions);
 
-    app.get("/api/transaction/user", [tokenMiddleware.verifyToken], transactionController.getUserTransactions);
+    app.get("/api/transaction/user", [TokenMiddleware.verifyToken], TransactionController.getUserTransactions);
 
-    app.post("/api/transaction/new", [tokenMiddleware.verifyToken], transactionController.newTransaction);
+    app.post("/api/transaction/new", [TokenMiddleware.verifyToken], TransactionController.newTransaction);
 
 };

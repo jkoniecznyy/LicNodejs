@@ -9,10 +9,18 @@ export default {
                 email,
                 password
             });
-            console.log(res)
             return res.status === 200;
         } catch (err) {
             return false
+        }
+    },
+    async getUserInfo(){
+        try {
+            let user = await axios.get(`${url}info`);
+            console.log(user.data)
+            return user.data;
+        } catch (err) {
+            return null
         }
     },
     async logout() {

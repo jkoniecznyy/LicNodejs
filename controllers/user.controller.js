@@ -86,3 +86,19 @@ exports.changePassword = async (req, res) => {
     }
     return res.status(500).send({message: "Password change failed."})
 };
+/**
+ * Returns the user object if it is stored in res.locals.user
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
+exports.getUser = async (req, res) => {
+    if (res.locals.user !== null) {
+        return res.status(200).send({
+             id: res.locals.user._id,
+             email: res.locals.user.email,
+             isAdmin: res.locals.user.isAdmin
+        });
+    }
+    return res.status(500).send({message: "Cannot get user."})
+};

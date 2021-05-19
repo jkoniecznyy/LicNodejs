@@ -1,22 +1,26 @@
-const tokenMiddleware = require("../middleware/token.middleware");
-const validationMiddleware = require("../middleware/validation.middleware");
+const TokenMiddleware = require("../middleware/token.middleware");
+const ValidationMiddleware = require("../middleware/validation.middleware");
 const UserService = require("../services/user.service");
 const UserController = require("../controllers/user.controller");
 
 module.exports = function (app) {
 
     app.post("/api/user/register",
-        [validationMiddleware.validateForm, UserService.checkDuplicatedEmail],
+        [ValidationMiddleware.validateForm, UserService.checkDuplicatedEmail],
         UserController.createUser);
 
     app.post("/api/user/login",
-        [validationMiddleware.validateForm, UserController.findUserByEmail],
+        [ValidationMiddleware.validateForm, UserController.findUserByEmail],
         UserController.login);
 
     app.get("/api/user/logout",
         UserController.logout);
 
     app.post("/api/user/change",
-        [tokenMiddleware.verifyToken],
+        [TokenMiddleware.verifyToken],
         UserController.changePassword);
+
+    app.get("/api/user/info",
+        [TokenMiddleware.verifyToken, UserService.findUserById],
+        UserController.getUser);
 };

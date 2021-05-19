@@ -7,7 +7,6 @@ exports.verifyToken = async (req, res, next) => {
 
     jwt.verify(accessToken, config.secret, (err, decoded) => {
         if (err) return res.status(401).send({message: "Unauthorized!"});
-
         res.locals.userId = decoded.id;
         console.log("Token verified")
         next();

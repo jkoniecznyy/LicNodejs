@@ -3,7 +3,9 @@
 body {
     font-size: 22px;
 }
-
+#loggedAs{
+    font-size: 22px;
+}
 #login{
     font-size: 34px;
 }
