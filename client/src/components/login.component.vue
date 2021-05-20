@@ -4,7 +4,7 @@
       <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"> <b id="login">Logowanie</b>  </h2>
       <form v-if="!isLogged" @submit="onSubmit" autocomplete="off">
         <input v-model="email" class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="email">
-        <input  v-model="password" class="w3-input w3-section w3-border" type="text" placeholder="Haslo" required name="password">
+        <input  v-model="password" class="w3-input w3-section w3-border" type="password" placeholder="Haslo" required name="password">
         <button @click="login" class="w3-button w3-black w3-section" >
           <i class="fa fa-paper-plane"></i> Zaloguj się
         </button>

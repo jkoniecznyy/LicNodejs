@@ -6,7 +6,7 @@
         <!-- Float links to the right. Hide them on small screens -->
 
         <div v-if="isLogged" class="w3-right w3-hide-small">
-          <router-link v-if="user" to="/transactions" class="w3-bar-item w3-button" id="loggedAs">
+          <router-link v-if="user" to="/transactions" class="w3-bar-item w3-button" id="logged-as">
             {{ user.email }}
           </router-link>
           <router-link to="/transactions" class="w3-bar-item w3-button">Transakcje</router-link>
@@ -51,7 +51,7 @@ export default {
     this.user = await UserService.getUserInfo()
   },
   async updated() {
-    // this.isLogged = await AccessService.TestAnyAccess('user')
+    this.isLogged = await AccessService.TestAnyAccess('user')
     // this.user = await UserService.getUserInfo()
   }
 }
